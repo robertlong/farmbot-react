@@ -30,5 +30,5 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
 };

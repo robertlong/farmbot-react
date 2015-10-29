@@ -1,11 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
+import { login } from '../../actions/FarmbotActions';
+import { navigateNextPathOrDashboard } from '../../actions/RouterActions';
 
+const formOptions = {
+  form: 'login',
+  fields: ['username', 'password'],
+  onSubmit: ({ username, password }, dispatch) => {
+    return dispatch(login(username, password))
+      .then(dispatch(navigateNextPathOrDashboard('/dashboard')));
+  },
+};
+
+@reduxForm(formOptions)
 export default class Login extends Component {
+  static propTypes = {
+    fields: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    submitting: PropTypes.bool.isRequired,
+  }
+
   render() {
+    const {
+      fields: {username, password},
+      handleSubmit,
+      submitting,
+    } = this.props;
+
     return (
-      <div className="login">
-        Login
-      </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username</label>
+          <div>
+            <input type="text" placeholder="Username" {...username}/>
+          </div>
+          {username.touched && username.error && <div>{username.error}</div>}
+        </div>
+        <div>
+          <label>Password</label>
+          <div>
+            <input type="password" placeholder="Password" {...password}/>
+          </div>
+          {password.touched && password.error && <div>{password.error}</div>}
+        </div>
+        <div>
+          <button onClick={handleSubmit}>
+            {!submitting && <i/> /* key icon */}
+            {submitting && <i/> /* spinning cog icon */} Log In
+          </button>
+        </div>
+      </form>
     );
   }
 }

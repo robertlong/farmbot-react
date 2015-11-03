@@ -13,6 +13,7 @@
     "block-scoped-var": 0,
     "padded-blocks": 0,
     "new-cap": 0,
+    "id-length": [2, {"exceptions": ["x", "y", "z"]}]
   },
   "plugins": [
     "react"

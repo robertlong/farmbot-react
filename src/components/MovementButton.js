@@ -23,13 +23,15 @@ const styles = {
 @Radium
 export default class MovementButton extends Component {
   static propTypes = {
+    onClick: PropTypes.function,
     direction: PropTypes.string.isRequired,
   }
 
   render() {
+    const { direction, onClick } = this.props;
     return (
-      <div className="movement-button" style={styles.base}>
-        <Icon name={`arrow-${this.props.direction}`}/>
+      <div className="movement-button" style={styles.base} onClick={onClick}>
+        <Icon name={`arrow-${direction}`}/>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import MovementButton from './MovementButton';
 
@@ -20,20 +20,25 @@ const styles = {
 
 @Radium
 export default class MovementControls extends Component {
+  static propTypes = {
+    bot: PropTypes.object.isRequired,
+  }
+
   render() {
+    const { bot } = this.props;
     return (
       <div className="movement-controls" style={styles.base}>
         <div style={styles.row}>
           <div style={styles.spacer}/>
-          <MovementButton direction="up"/>
+          <MovementButton onClick={bot.moveForward} direction="up"/>
           <div style={styles.spacer}/>
-          <MovementButton direction="up"/>
+          <MovementButton onClick={bot.raise} direction="up"/>
         </div>
         <div style={styles.row}>
-          <MovementButton direction="left"/>
-          <MovementButton direction="down"/>
-          <MovementButton direction="right"/>
-          <MovementButton direction="down"/>
+          <MovementButton onClick={bot.moveLeft} direction="left"/>
+          <MovementButton onClick={bot.moveBackward} direction="down"/>
+          <MovementButton onClick={bot.moveRight} direction="right"/>
+          <MovementButton onClick={bot.lower} direction="down"/>
         </div>
       </div>
     );

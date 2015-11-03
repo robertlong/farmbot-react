@@ -13,7 +13,7 @@ export function navigateNextPath(defaultRoute) {
 }
 
 export function navigateNextPathOrDashboard() {
-  return navigateNextPath('/dashboard');
+  return navigateNextPath('/');
 }
 
 export function navigateLogin(nextState) {
@@ -21,5 +21,5 @@ export function navigateLogin(nextState) {
 }
 
 export function navigateDashboard() {
-  return pushState(null, '/dashboard');
+  return pushState(null, '/');
 }

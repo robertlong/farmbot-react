@@ -30,4 +30,12 @@ export default class Farmbot {
       }, 200);
     });
   }
+
+  static signup(/* email, username, password, passwordConfirmation */) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ token: TOKEN });
+      }, 200);
+    });
+  }
 }
